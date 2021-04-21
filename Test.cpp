@@ -4,17 +4,11 @@
 
 TEST_CASE("Valid Constructor Input")
 {
-    CHECK_THROWS(NumberWithUnits unitundifiend(100,"Birds"));
     CHECK_NOTHROW(NumberWithUnits unit_g(2.2, "g"));
     CHECK_NOTHROW(NumberWithUnits unit_ton(3.2, "ton"));
     CHECK_NOTHROW(NumberWithUnits unit_cm(32, "cm"));
     CHECK_NOTHROW(NumberWithUnits unit_m(200, "m"));
-    CHECK_NOTHROW(NumberWithUnits unit_km(32, "km"));
-    CHECK_NOTHROW(NumberWithUnits unit_USD(-52, "USD"));
-    CHECK_NOTHROW(NumberWithUnits unit_ILS(400, "ILS"));
-    CHECK_NOTHROW(NumberWithUnits unit_sec(-33, "sec"));
-    CHECK_NOTHROW(NumberWithUnits unit_min(5.6, "min"));
-    CHECK_NOTHROW(NumberWithUnits unit_hour(7.2, "hour"));
+
 }
 
 TEST_CASE("Invalid Constructor input")
@@ -29,4 +23,17 @@ TEST_CASE("Invalid Constructor input")
     CHECK_THROWS(NumberWithUnits unit_min(4, "nevermind"));
     CHECK_THROWS(NumberWithUnits unit_day(17.8, "try"));
     CHECK_THROWS(NumberWithUnits unit_week(21, "phone"));
+}
+
+TEST_CASE("Operator Checks"){
+    NumberWithUnits a(14 , "cm") , b(5,"m");
+    CHECK(a<b);
+    CHECK(b>a);
+    CHECK(a+b);
+    CHECK(a-b);
+        NumberWithUnits c=b-a;
+        CHECK(c==NumberWithUnits{4.86 , "m"});
+        CHECK((c+a)==b);
+        CHECK((c-b)==-a);
+        CHECK((-c)==NumberWithUnits{-4.86 , "m"});
 }
