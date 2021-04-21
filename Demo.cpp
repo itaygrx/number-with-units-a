@@ -12,7 +12,7 @@
 using namespace std;
 
 #include "NumberWithUnits.hpp"
-using namespace ariel;
+
 
 int main() {
   ifstream units_file{"units.txt"};
